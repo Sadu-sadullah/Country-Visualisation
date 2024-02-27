@@ -1,0 +1,12 @@
+#block {
+    display: block;
+}
+
+.not-clicked {
+    background-color: rgb(120, 55, 225); 
+    border: none; 
+}
+
+.clicked {
+    background-color: #581cb8;
+}
