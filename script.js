@@ -84,22 +84,20 @@ countries.forEach((element) => createDiv(element.toUpperCase()))
 
 input.addEventListener('keyup', () => {
     const searchTerm = input.value.toLowerCase()
-    if(searchTerm && strtBtn.classList.value === 'not-clicked' && sort.classList.value === 'not-clicked') {
-        search(searchTerm, 'includes')
-        console.log(1)
+    if (searchTerm) {
+        if(strtBtn.classList.value === 'not-clicked' && sort.classList.value === 'not-clicked') {
+            search(searchTerm, 'includes')
+        }
+        else if (strtBtn.classList.value === 'not-clicked clicked' && sort.classList.value === 'not-clicked') {
+            search(searchTerm, 'startsWith')
+        }
+        else if (strtBtn.classList.value === 'not-clicked' && sort.classList.value === 'not-clicked clicked') {
+            search(searchTerm, 'sortInc')
+        }
+        else if (strtBtn.classList.value === 'not-clicked clicked' && sort.classList.value === 'not-clicked clicked') {
+            search(searchTerm, 'sortStarts')
+        }
     }
-    else if (searchTerm && strtBtn.classList.value === 'not-clicked clicked' && sort.classList.value === 'not-clicked') {
-        search(searchTerm, 'startsWith')
-        console.log(1)
-    }
-    else if (searchTerm && strtBtn.classList.value === 'not-clicked' && sort.classList.value === 'not-clicked clicked') {
-        search(searchTerm, 'sortInc')
-        console.log(1)
-    }
-    else if (searchTerm && strtBtn.classList.value === 'not-clicked clicked' && sort.classList.value === 'not-clicked clicked') {
-        search(searchTerm, 'sortStarts')
-    }
-    // else if (searchTerm && strtBtn.classList.value == 'not-clicked clicked' && sort.classList.value == 'not-clicked clicked')
     else {
         filteredData = countries.map((country) => country.toUpperCase())
         console.log(1)
@@ -113,19 +111,21 @@ input.addEventListener('keyup', () => {
 strtBtn.addEventListener('click', () => {
     strtBtn.classList.toggle('clicked')
     const searchTerm = input.value.toLowerCase()
-    if (searchTerm && strtBtn.classList.value === 'not-clicked clicked' && sort.classList.value === 'not-clicked') {
-        search(searchTerm, 'startsWith')
-        console.log(1)
-    }
-    else if (searchTerm && strtBtn.classList.value === 'not-clicked clicked' && sort.classList.value === 'not-clicked clicked'){
-        search(searchTerm, 'sortStarts')
-        console.log(1)
+    if (searchTerm) {
+        if (strtBtn.classList.value === 'not-clicked clicked' && sort.classList.value === 'not-clicked') {
+            search(searchTerm, 'startsWith')
+            console.log(1)
+        }
+        else if (strtBtn.classList.value === 'not-clicked clicked' && sort.classList.value === 'not-clicked clicked'){
+            search(searchTerm, 'sortStarts')
+            console.log(1)
+        }
+        else if (strtBtn.classList.value === 'not-clicked' && sort.classList.value === 'not-clicked clicked') {
+            search(searchTerm, 'sortInc')
+        }
     }
     else if (strtBtn.classList.value === 'not-clicked' && sort.classList.value === 'not-clicked clicked') {
         search(searchTerm, 'includes')
-    }
-    else if (searchTerm && strtBtn.classList.value === 'not-clicked' && sort.classList.value === 'not-clicked clicked') {
-        search(searchTerm, 'sortInc')
     }
     else {
         filteredData = countries.map((country) => country.toUpperCase())
@@ -136,32 +136,31 @@ strtBtn.addEventListener('click', () => {
 sort.addEventListener('click', () => {
     sort.classList.toggle('clicked')
     const searchTerm = input.value.toLowerCase()
-    if (sort.classList.value === 'not-clicked clicked' && strtBtn.classList.value === 'not-clicked' && searchTerm) {
-        search(searchTerm, 'sortInc')
-        console.log(1)
-    } 
-    else if (sort.classList.value === 'not-clicked' && strtBtn.classList.value === 'not-clicked' && searchTerm){
-        search(searchTerm, 'includes')
-        console.log(1)
+    if (searchTerm) {
+        if (sort.classList.value === 'not-clicked clicked' && strtBtn.classList.value === 'not-clicked') {
+            search(searchTerm, 'sortInc')
+        } 
+        else if (sort.classList.value === 'not-clicked' && strtBtn.classList.value === 'not-clicked'){
+            search(searchTerm, 'includes')
+        }
+        else if (sort.classList.value === 'not-clicked clicked' && strtBtn.classList.value === 'not-clicked clicked') {
+            search(searchTerm, 'sortStarts')
+        } 
+        else if (sort.classList.value === 'not-clicked' && strtBtn.classList.value === 'not-clicked clicked'){
+            search(searchTerm, 'startsWith')
+        }
     }
-    else if (sort.classList.value === 'not-clicked clicked' && strtBtn.classList.value === 'not-clicked' && !(searchTerm)) {
-        search(searchTerm, 'sortInc2')
-        console.log(1)
-    } 
-    else if (sort.classList.value === 'not-clicked clicked' && strtBtn.classList.value === 'not-clicked clicked' && searchTerm) {
-        search(searchTerm, 'sortStarts')
-        console.log(1)
-    } 
-    else if (sort.classList.value === 'not-clicked' && strtBtn.classList.value === 'not-clicked clicked' && searchTerm){
-        search(searchTerm, 'startsWith')
-        console.log(1)
-    }
-    else if (sort.classList.value === 'not-clicked clicked' && strtBtn.classList.value === 'not-clicked' && !(searchTerm)) {
-        search(searchTerm, 'sortInc')
+    else if (!(searchTerm)) {
+        if (sort.classList.value === 'not-clicked clicked' && strtBtn.classList.value === 'not-clicked') {
+            search(searchTerm, 'sortInc2')
+        } 
+        else if (sort.classList.value === 'not-clicked' && strtBtn.classList.value === 'not-clicked') {
+            search(searchTerm, 'sortInc1')
+            console.log(1)
+        }
     }
     else {
         search(searchTerm, 'SortInc1')
-        console.log(1)
     }
     clear()
 })
